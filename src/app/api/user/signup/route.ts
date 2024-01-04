@@ -25,9 +25,9 @@ export async function POST(req: any) {
             password: hash_password,
             phone
         })
-        const save = await saveUser.save()
+        await saveUser.save()
 
-        return NextResponse.json({ success: true, Data: save }, { status: 200 })
+        return NextResponse.json({ success: true }, { status: 200 })
 
 
     } catch (error) {
