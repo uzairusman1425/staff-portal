@@ -10,12 +10,17 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.1.1",
+    "bcrypt": "^5.1.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongodb": "^6.3.0",
+    "mongoose": "^8.0.3",
     "next": "14.0.4",
     "react": "^18",
     "react-dom": "^18",
     "tailwind-scrollbar": "^3.0.5"
   },
   "devDependencies": {
+    "@types/react": "18.2.46",
     "autoprefixer": "^10.0.1",
     "eslint": "^8",
     "eslint-config-next": "14.0.4",
