@@ -12,6 +12,40 @@ export default function Signup() {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [phoneNumber, setPhoneNumber] = useState("")
+    const [error, setError] = useState(null)
+
+    async function handleSignup() {
+        const body = {
+            fullname: fullName,
+            email: email,
+            password: password,
+            phone: phoneNumber
+        }
+
+        try {
+            const response = await fetch("/api/user/signup", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(body)
+            })
+
+            const result = await response.json()
+    
+            console.log(result)
+
+            if(result?.success === true) {
+                router.push("/")
+            }
+            else {
+                setError(result?.error)
+            }
+        }
+        catch (error) {
+            console.error(error)
+        }
+    }
 
     return (
         <div className="h-screen w-screen grid grid-cols-2">
@@ -44,7 +78,8 @@ export default function Signup() {
                         <input type="text" value={phoneNumber} onChange={(e) => {setPhoneNumber(e.target.value)}} placeholder="Enter your phone number" style={{outline: "none", width: "100%"}} />
                     </div>
                 </div>
-                <button className="flex items-center justify-center h-16 w-8/12 mt-5 rounded-xl bg-themeGray" onClick={() => {router.push("/")}}>
+                {error && <div className="text-lg font-semibold text-red-500">{error}</div>}
+                <button className="flex items-center justify-center h-16 w-8/12 mt-5 rounded-xl bg-themeGray" onClick={handleSignup}>
                     <div className="text-2xl font-semibold text-white">Create An Account</div>
                 </button>
             </div>

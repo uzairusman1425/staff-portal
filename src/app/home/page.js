@@ -1,8 +1,23 @@
+"use client";
+
+import { useEffect } from "react"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import TopBar from "../../components/top-bar/TopBar"
 
 
 export default function Home() {
+
+    const router = useRouter()
+
+    useEffect(() => {
+        const token = localStorage.getItem("token")
+
+        console.log(token)
+        if(!token) {
+            router.push("/")
+        }
+    }, [router])
 
     return (
         <div className="h-screen w-screen flex flex-col">
