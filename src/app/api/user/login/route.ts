@@ -34,6 +34,7 @@ export async function POST(req: any) {
         const token = await Jwt.sign(tokenData, process.env.JSON_TOKEN)
         const response = NextResponse.json({ success: true, message: "login success", token: token }, { status: 200 })
 
+
         return response
 
 
