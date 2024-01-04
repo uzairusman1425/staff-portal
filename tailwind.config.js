@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+import scrollbarPlugin from 'tailwind-scrollbar'
 module.exports = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
@@ -7,12 +8,19 @@ module.exports = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+      colors: {
+        themeGray: '#B1B2B2',
+        themeDarkGray: '#797A7B',
+        themeLightGray: '#F2F2F2'
       },
+      fontFamily: {
+        sans: ['var(--font-inter)'],
+        sora: ['var(--font-sora)'],
+        poppins: ['var(--font-poppins)']
+      }
     },
   },
-  plugins: [],
+  plugins: [
+    scrollbarPlugin({ nocompatible: true })
+  ],
 }
