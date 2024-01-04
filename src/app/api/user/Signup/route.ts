@@ -18,11 +18,11 @@ export async function POST(req: any) {
             return NextResponse.json({ error: "email exist already" }, { status: 400 })
         }
         const salt = await bcrypt.genSalt(10)
-        const hashpassword = await bcrypt.hash(password, salt)
+        const hash_password = await bcrypt.hash(password, salt)
         const saveUser = new User({
             fullname,
             email,
-            password: hashpassword,
+            password: hash_password,
             phone
         })
         const save = await saveUser.save()
