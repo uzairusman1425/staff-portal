@@ -26,6 +26,7 @@ export async function POST(req: any) {
             phone
         })
         const save = await saveUser.save()
+
         return NextResponse.json({ success: true, Data: save }, { status: 200 })
 
     } catch (error) {
