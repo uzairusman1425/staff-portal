@@ -1,7 +1,7 @@
-import TopBar from "@/components/top-bar/TopBar"
-import Header from "@/components/header/Header"
+import TopBar from "../../../components/top-bar/TopBar"
+import Header from "../../../components/header/Header"
 
-export default function Blog({params}) {
+export default function Blog({ params }) {
 
     console.log(params?.id)
 
