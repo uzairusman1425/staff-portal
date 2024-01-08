@@ -16,7 +16,7 @@ function FeaturedBlogCard({id, name, date, title, content}) {
                     <ArrowUpRightIcon className="h-6 w-6 text-black" />
                 </Link>
             </div>
-            <div className="text-themeDarkGray">{content}</div>
+            <div className="text-themeDarkGray">{content?.slice(0, 350)}<span>{content?.length > 350 && "..."}</span></div>
         </div>
     )
 }
@@ -24,7 +24,7 @@ function FeaturedBlogCard({id, name, date, title, content}) {
 export default FeaturedBlogCard
 
 FeaturedBlogCard.propTypes = {
-    id: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     date: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,

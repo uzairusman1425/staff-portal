@@ -1,8 +1,7 @@
-import User from "../../../../models/Usermodel";
-import connect from "../../../../db/connect.js";
-import bcrypt from 'bcrypt'
-import { NextApiRequest } from "next";
-import { NextResponse } from "next/server";
+import User from "../../../../models/Usermodel"
+import connect from "../../../../db/connect.js"
+import bcrypt from "bcrypt"
+import { NextResponse } from "next/server"
 
 export async function POST(req: any) {
     connect()
@@ -12,10 +11,10 @@ export async function POST(req: any) {
         const isUser = await User.findOne({ email })
 
         if (!fullname || !email || !password || !phone) {
-            return NextResponse.json({ error: "all fileds are requird " }, { status: 400 })
+            return NextResponse.json({ error: "All fields are required!" }, { status: 400 })
         }
         if (isUser) {
-            return NextResponse.json({ error: "email exist already" }, { status: 400 })
+            return NextResponse.json({ error: "This email already exists!" }, { status: 400 })
         }
         const salt = await bcrypt.genSalt(10)
         const hash_password = await bcrypt.hash(password, salt)

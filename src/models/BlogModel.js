@@ -1,20 +1,20 @@
 // models/BlogModel.js
-import mongoose, { Schema, model } from 'mongoose';
+import mongoose, { Schema, model } from "mongoose"
 
-const validBlogTypes = ['active idea', 'research idea'];
+const validBlogTypes = ["active idea", "research idea"]
 
 const BlogSchema = new Schema({
     title: {
         type: String,
-        required: [true, 'Title is required'],
+        required: [true, "Title is required!"],
     },
     content: {
         type: String,
-        required: [true, 'Content is required'],
+        required: [true, "Content is required!"],
     },
     user: {
         type: Schema.Types.ObjectId,
-        ref: 'User',
+        ref: "User",
         required: true,
     },
     username: {
@@ -23,15 +23,14 @@ const BlogSchema = new Schema({
     blogtype: {
         type: String,
         enum: validBlogTypes,
-        required: [true, "blog type is required! "]
-
+        required: [true, "Blog type is required!"]
     },
     createdAt: {
         type: Date,
         default: Date.now,
     },
-});
+})
 
-const Blog = mongoose.models.Blog || model('Blog', BlogSchema);
+const Blog = mongoose.models.Blog || model("Blog", BlogSchema)
 
-export default Blog;
+export default Blog

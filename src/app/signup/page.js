@@ -14,7 +14,10 @@ export default function Signup() {
     const [phoneNumber, setPhoneNumber] = useState("")
     const [error, setError] = useState(null)
 
-    async function handleSignup() {
+    async function handleSignup(e) {
+
+        e.preventDefault()
+
         const body = {
             fullname: fullName,
             email: email,
@@ -26,14 +29,12 @@ export default function Signup() {
             const response = await fetch("/api/user/signup", {
                 method: "POST",
                 headers: {
-                    'Content-Type': 'application/json'
+                    "Content-Type": "application/json"
                 },
                 body: JSON.stringify(body)
             })
 
             const result = await response.json()
-    
-            console.log(result)
 
             if(result?.success === true) {
                 router.push("/")

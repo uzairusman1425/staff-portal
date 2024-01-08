@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from 'react'
-import { useRouter } from 'next/navigation';
-import Image from 'next/image'
-import Link from 'next/link';
+import { useState } from "react"
+import { useRouter } from "next/navigation"
+import Image from "next/image"
+import Link from "next/link"
 
 export default function Login() {
 
@@ -13,7 +13,10 @@ export default function Login() {
     const [password, setPassword] = useState("")
     const [error, setError] = useState(null)
 
-    async function handleLogin() {
+    async function handleLogin(e) {
+
+        e.preventDefault()
+
         const body = {
             email: email,
             password: password
@@ -23,14 +26,12 @@ export default function Login() {
             const response = await fetch("/api/user/login", {
                 method: "POST",
                 headers: {
-                    'Content-Type': 'application/json'
+                    "Content-Type": "application/json"
                 },
                 body: JSON.stringify(body)
             })
 
             const result = await response.json()
-    
-            console.log(result)
 
             if(result?.success === true) {
                 localStorage.setItem("token", result?.token)
@@ -48,7 +49,7 @@ export default function Login() {
     return (
         <div className="h-screen w-screen grid grid-cols-2">
             <div className="flex items-center justify-center">
-                <Image src='/images/bg-image.png' alt="staff-portal" height={500} width={500} />
+                <Image src="/images/bg-image.png" alt="staff-portal" height={500} width={500} />
             </div>
             <div className="flex flex-col gap-10 items-center justify-center">
                 <div className="text-5xl font-semibold font-poppins text-themeGray">Welcome Back!</div>

@@ -12,8 +12,6 @@ export default function Home() {
 
     useEffect(() => {
         const token = localStorage.getItem("token")
-
-        console.log(token)
         if(!token) {
             router.push("/")
         }
