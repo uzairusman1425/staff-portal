@@ -32,8 +32,6 @@ export default function ActiveIdeas() {
                 const response = await fetch("/api/post")
     
                 const result = await response.json()
-        
-                console.log(result)
 
                 if(result?.success) {
                     setBlogs(result?.data?.filter(checkBlogType)?.reverse())
@@ -73,8 +71,6 @@ export default function ActiveIdeas() {
             })
 
             const result = await response.json()
-    
-            console.log(result)
 
             if(result?.success) {
                 setBlogContent("")
@@ -84,8 +80,6 @@ export default function ActiveIdeas() {
                     const response = await fetch("/api/post")
         
                     const result = await response.json()
-            
-                    console.log(result)
     
                     if(result?.success) {
                         setBlogs(result?.data?.filter(checkBlogType)?.reverse())

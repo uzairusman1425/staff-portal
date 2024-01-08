@@ -55,7 +55,7 @@ export async function GET(req: any) {
         if (!blog) {
             return NextResponse.json({ error: 'Blog not found!' }, { status: 400 })
         }
-        return NextResponse.json({ succuss: true, blog: blog }, { status: 200 })
+        return NextResponse.json({ success: true, blog: blog }, { status: 200 })
     } catch (error) {
         return NextResponse.json({ error: error.message }, { status: 500 })
     }

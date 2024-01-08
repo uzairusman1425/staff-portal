@@ -4,11 +4,11 @@ function connect() {
     try {
         const uri = process.env.MONGODB_URI
         mongoose.connect(uri)
-        const conection = mongoose.connection
-        conection.on("connected", () => {
-            console.log("connected...")
+        const connection = mongoose.connection
+        connection.on("connected", () => {
+            console.log("Database connected...")
         })
-        conection.on("error", (error) => {
+        connection.on("error", (error) => {
             console.error(error.message)
         })
     } catch (error) {
