@@ -17,7 +17,7 @@ export async function POST(req: any) {
         const id = decodedToken.id
         const isuser = await User.findById(id)
         if (!isuser) {
-            return NextResponse.json({ error: "User not found" }, { status: 400 })
+            return NextResponse.json({ error: "User not found!" }, { status: 400 })
         }
 
 
