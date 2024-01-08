@@ -40,17 +40,20 @@ export async function POST(req: any) {
     }
 }
 
-
-
-export async function GET() {
+export async function GET(req: any) {
     connect()
-
     try {
-
-        const blog = await Blog.find()
-        return NextResponse.json({ success: true, data: blog }, { status: 200 })
+        const id = await req.nextUrl.searchParams.get('id')
+        if (!id) {
+            const blog = await Blog.find()
+            if (!blog) {
+                return NextResponse.json({ error: 'Blog not found!' }, { status: 400 })
+            }
+            return NextResponse.json({ success: true, data: blog }, { status: 200 })
+        }
+        const blog = await Blog.findById(id)
+        return NextResponse.json({ succuss: true, blog: blog }, { status: 200 })
     } catch (error) {
         return NextResponse.json({ error: error.message }, { status: 500 })
     }
-
 }
