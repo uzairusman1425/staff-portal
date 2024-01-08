@@ -52,6 +52,9 @@ export async function GET(req: any) {
             return NextResponse.json({ success: true, data: blog }, { status: 200 })
         }
         const blog = await Blog.findById(id)
+        if (!blog) {
+            return NextResponse.json({ error: 'Blog not found!' }, { status: 400 })
+        }
         return NextResponse.json({ succuss: true, blog: blog }, { status: 200 })
     } catch (error) {
         return NextResponse.json({ error: error.message }, { status: 500 })
