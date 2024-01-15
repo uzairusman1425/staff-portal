@@ -9,6 +9,7 @@ const SignupSchema = new Schema({
         type: String,
         required: [true, 'Email is required'],
         match: [/^\S+@\S+\.\S+$/, 'Please enter a valid email address.'],
+        unique: true,
     },
     password: {
         type: String,

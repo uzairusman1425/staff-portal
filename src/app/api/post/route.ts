@@ -26,7 +26,8 @@ export async function POST(req: any) {
             content,
             user: isuser._id,
             username: isuser.fullname,
-            blogtype
+            blogtype,
+            emial: isuser.email
         })
 
         const dave = await newBlog.save()
@@ -52,6 +53,22 @@ export async function GET(req: any) {
             return NextResponse.json({ success: true, data: blog }, { status: 200 })
         }
         const blog = await Blog.findById(id)
+        if (!blog) {
+            return NextResponse.json({ error: 'Blog not found!' }, { status: 400 })
+        }
+        return NextResponse.json({ success: true, blog: blog }, { status: 200 })
+    } catch (error) {
+        return NextResponse.json({ error: error.message }, { status: 500 })
+    }
+}
+
+export async function DELETE(req: any) {
+
+    connect()
+    try {
+        const id = await req.nextUrl.searchParams.get('id')
+
+        const blog = await Blog.findByIdAndDelete(id)
         if (!blog) {
             return NextResponse.json({ error: 'Blog not found!' }, { status: 400 })
         }

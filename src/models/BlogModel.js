@@ -25,6 +25,11 @@ const BlogSchema = new Schema({
         enum: validBlogTypes,
         required: [true, "Blog type is required!"]
     },
+    emial: {
+        type: String,
+        required: [true, " email is required!"]
+
+    },
     createdAt: {
         type: Date,
         default: Date.now,
