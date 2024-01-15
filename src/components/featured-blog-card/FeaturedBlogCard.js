@@ -2,13 +2,15 @@ import Link from "next/link"
 import PropTypes from "prop-types"
 import { ArrowUpRightIcon } from "@heroicons/react/24/solid"
 
-function FeaturedBlogCard({id, name, date, title, content}) {
+export default function FeaturedBlogCard({id, name, email, date, title, content}) {
     return (
         <div className="w-full flex flex-col gap-5">
             <div className="flex flex-row gap-2 items-center">
                 <div className="text-themeDarkGray font-semibold">{name}</div>
                 <div className="h-2 w-2 rounded-full bg-themeDarkGray" />
                 <div className="text-themeDarkGray font-semibold">{date}</div>
+                <div className="h-2 w-2 rounded-full bg-themeDarkGray" />
+                <div className="text-themeDarkGray font-semibold">{email}</div>
             </div>
             <div className="flex flex-row items-center justify-between w-full">
                 <div className="text-2xl font-semibold">{title}</div>
@@ -21,11 +23,10 @@ function FeaturedBlogCard({id, name, date, title, content}) {
     )
 }
 
-export default FeaturedBlogCard
-
 FeaturedBlogCard.propTypes = {
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
     date: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     content: PropTypes.string.isRequired

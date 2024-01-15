@@ -1,13 +1,15 @@
 import Link from "next/link"
 import PropTypes from "prop-types"
 
-export default function BlogCard({id, name, date, title, content}) {
+export default function BlogCard({id, name, email, date, title, content}) {
     return (
         <Link href={`/blog/${id}`} className="w-full flex flex-col gap-3">
             <div className="flex flex-row gap-2 items-center">
                 <div className="font-extralight">{name}</div>
                 <div className="h-1 w-1 rounded-full bg-themeDarkGray" />
                 <div className="text-themeGray text-sm font-extralight">{date}</div>
+                <div className="h-1 w-1 rounded-full bg-themeDarkGray" />
+                <div className="font-extralight">{email}</div>
             </div>
             <div className="w-full flex flex-col gap-3">
                 <div className="text-xl">{title}</div>
@@ -21,6 +23,7 @@ export default function BlogCard({id, name, date, title, content}) {
 BlogCard.propTypes = {
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
     date: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     content: PropTypes.string.isRequired

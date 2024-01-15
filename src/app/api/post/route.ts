@@ -90,10 +90,9 @@ export async function DELETE(req: any) {
             return NextResponse.json({ error: "User can only delete their own post" }, { status: 403 });
         }
 
+        const deleted = await Blog.findByIdAndDelete(blog.id)
 
-        const dleted = await Blog.findByIdAndDelete(blog.id)
-
-        return NextResponse.json({ success: true, Deleted: dleted }, { status: 200 });
+        return NextResponse.json({ success: true, Deleted: deleted }, { status: 200 });
     } catch (error) {
 
         return NextResponse.json({ error: error.message }, { status: 500 });

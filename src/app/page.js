@@ -33,8 +33,14 @@ export default function Login() {
 
             const result = await response.json()
 
-            if(result?.success === true) {
-                localStorage.setItem("token", result?.token)
+            if(result?.success) {
+
+                const session = {
+                    token: result?.token,
+                    email: email
+                }
+
+                localStorage.setItem("session", JSON.stringify(session))
                 router.push("/home")
             }
             else {

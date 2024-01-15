@@ -108,12 +108,12 @@ export default function ResearchIdeas() {
                     <textarea className="flex-1" style={{outline: "none"}} value={blogContent} placeholder="Write an idea..." onChange={(e) => {setBlogContent(e.target.value)}} />
                     <button className="h-10 w-24 rounded bg-blue-800 self-end text-lg font-semibold text-white" onClick={postBlog}>Post</button>
                 </div>
-                {blogs?.length > 0 && <FeaturedBlogCard id={blogs[0]?._id} name={blogs[0]?.username || "User"} date={blogs[0]?.createdAt?.slice(0, 10)} title={blogs[0]?.title} content={blogs[0]?.content} />}
+                {blogs?.length > 0 && <FeaturedBlogCard id={blogs[0]?._id} name={blogs[0]?.username || "User"} email={blogs[0]?.email} date={blogs[0]?.createdAt?.slice(0, 10)} title={blogs[0]?.title} content={blogs[0]?.content} />}
                 <div className="w-full grid grid-cols-2 gap-20 mt-10">
                     {blogs?.map((item, key) => {
                         if(key !== 0) {
                             return (
-                                <BlogCard id={item?._id} name={item?.username || "User"} date={item?.createdAt?.slice(0, 10)} title={item?.title} content={item?.content} key={key} />
+                                <BlogCard id={item?._id} name={item?.username || "User"} email={item?.email} date={item?.createdAt?.slice(0, 10)} title={item?.title} content={item?.content} key={key} />
                             )
                         }
                     })}
