@@ -17,14 +17,13 @@ export default function ActiveIdeas() {
     const router = useRouter()
 
     useEffect(() => {
-        const session = localStorage.getItem("session")
-        // if(!session?.token) {
-        //     router.push("/")
-        // }
-        // else {
-        //     setAccessToken(session?.token)
-        // }
-        console.log(session)
+        const session = JSON.parse(localStorage.getItem("session"))
+        if(!session?.token) {
+            router.push("/")
+        }
+        else {
+            setAccessToken(session?.token)
+        }
     }, [router])
 
     useEffect(() => {

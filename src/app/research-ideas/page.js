@@ -17,7 +17,7 @@ export default function ResearchIdeas() {
     const router = useRouter()
 
     useEffect(() => {
-        const session = localStorage.getItem("session")
+        const session = JSON.parse(localStorage.getItem("session"))
         if(!session?.token) {
             router.push("/")
         }
