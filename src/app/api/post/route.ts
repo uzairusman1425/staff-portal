@@ -62,18 +62,46 @@ export async function GET(req: any) {
     }
 }
 
+
 export async function DELETE(req: any) {
-
-    connect()
+    await connect();
     try {
-        const id = await req.nextUrl.searchParams.get('id')
 
-        const blog = await Blog.findByIdAndDelete(id)
-        if (!blog) {
-            return NextResponse.json({ error: 'Blog not found!' }, { status: 400 })
+        const { token, id } = await req.json();
+        if (typeof token !== 'string') {
+            return NextResponse.json({ error: 'Invalid token format' }, { status: 400 });
         }
-        return NextResponse.json({ success: true, blog: blog }, { status: 200 })
+        const user = await Jwt.verify(token, process.env.JSON_TOKEN) as JwtPayload;
+
+
+
+        if (!id) {
+            return NextResponse.json({ error: 'Invalid or missing ID parameter' }, { status: 400 });
+        }
+        const blog = await Blog.findById(id);
+
+
+        if (!blog) {
+            return NextResponse.json({ error: 'Blog not found!' }, { status: 400 });
+        }
+
+
+        if (user.email !== blog.email) {
+            return NextResponse.json({ error: "User can only delete their own post" }, { status: 403 });
+        }
+
+
+        const dleted = await Blog.findByIdAndDelete(blog.id)
+
+        return NextResponse.json({ success: true, Deleted: dleted }, { status: 200 });
     } catch (error) {
-        return NextResponse.json({ error: error.message }, { status: 500 })
+
+        return NextResponse.json({ error: error.message }, { status: 500 });
     }
 }
+
+
+
+
+
+
