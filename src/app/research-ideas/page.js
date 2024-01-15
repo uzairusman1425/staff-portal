@@ -17,12 +17,12 @@ export default function ResearchIdeas() {
     const router = useRouter()
 
     useEffect(() => {
-        const token = localStorage.getItem("token")
-        if(!token) {
+        const session = localStorage.getItem("session")
+        if(!session?.token) {
             router.push("/")
         }
         else {
-            setAccessToken(token)
+            setAccessToken(session?.token)
         }
     }, [router])
 
