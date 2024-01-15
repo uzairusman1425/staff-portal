@@ -27,7 +27,7 @@ export async function POST(req: any) {
             user: isuser._id,
             username: isuser.fullname,
             blogtype,
-            emial: isuser.email
+            email: isuser.email
         })
 
         const dave = await newBlog.save()
